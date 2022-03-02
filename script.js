@@ -40,7 +40,7 @@ colorPetal.addEventListener('input',(e) =>{
     });
 });
 colorFloret.addEventListener('input',(e) => {
-    floret.style['background-color'] = currentColor;
+    floret.style['background-color'] = e.target.value;
 });
 petalsNum.addEventListener('input',(e) => {
     while (petals.firstElementChild != floret) {
