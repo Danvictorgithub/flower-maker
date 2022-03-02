@@ -7,8 +7,8 @@ const radiusLen = document.querySelector('.lenRadius');
 const statRadius = document.querySelector('.radiusStat');
 const statusLen = document.querySelector('.lenStatus');
 const aod = document.querySelector('.aod');
-const petalInfo = document.querySelectorAll('.petal');
-const petals = document.querySelector('.petals');
+let petalInfo = document.querySelectorAll('.petal');
+let petals = document.querySelector('.petals');
 const floret = document.querySelector('.circle');
 
 const xPetal = document.querySelector('.petalX');
@@ -16,35 +16,37 @@ const yPetal = document.querySelector('.petalY');
 const zPetal = document.querySelector('.petalZ');
 let petalbefore = window.getComputedStyle(floret,'::before');
 //Default values
-let fColor = "white";
 let fRadius = 10;
 let length = 1;
-let pColor = "yellow";
 let defX = 50;
 let defY = 50;
 let defZ = 50;
 let angleOfDestribution = 30;
+let degree = 0;
+let currentColor = 'yellow'
 aod.textContent = "30°";
 statRadius.textContent = `${fRadius}`;
 statusLen.textContent = `${length}`;
-petalInfo.forEach((petal) => {
-    petal.style.setProperty('--trans',`skew(${length}deg,${length}deg)`);
+petalInfo.forEach((petalz) => {
+    petalz.style.setProperty('--trans',`skew(${length}deg,${length}deg)`);
 });
-
 //Event Listeners
 colorPetal.addEventListener('input',(e) =>{
+    currentColor = `${e.target.value}`
+    petalInfo = document.querySelectorAll('.petal');
+    petals = document.querySelector('.petals');
     petalInfo.forEach((petal) => {
-        petal.style.setProperty('--before',`${e.target.value}`);
+        petal.style.setProperty('--before',`${currentColor}`);
     });
 });
 colorFloret.addEventListener('input',(e) => {
-    floret.style['background-color'] = `${e.target.value}`;
-})
+    floret.style['background-color'] = currentColor;
+});
 petalsNum.addEventListener('input',(e) => {
     while (petals.firstElementChild != floret) {
         petals.removeChild(petals.firstElementChild);
     }
-    let degree = 360/e.target.value;
+    degree = 360/e.target.value;
     if (degree == Infinity) {
         degree = "Enter the number of Petals";
         while (petals.firstElementChild != floret) {
@@ -59,14 +61,16 @@ petalsNum.addEventListener('input',(e) => {
         }
     }
     aod.textContent = `${degree}°`;
-    
+    petalInfo = document.querySelectorAll('.petal');
+    petals = document.querySelector('.petals');
+    petalInfo.forEach((petal) => {
+        petal.style.setProperty('--before',`${currentColor}`);
+    });
 });
-
 radiusLen.addEventListener('input', (e) => {
     statRadius.textContent = `${e.target.value}`;
     floret.style['width'] = `${e.target.value}rem`;
     floret.style['height'] = `${e.target.value}rem`;
-
 });
 
 sliderLen.addEventListener('input', (e) => {
@@ -97,4 +101,3 @@ zPetal.addEventListener('input',(e) => {
         petal.style.setProperty('--rad', `${defX}% ${defY}% 0 ${defZ}%`);
     });
 });
-

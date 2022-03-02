@@ -58,7 +58,7 @@ html {
     transform-origin: bottom right;
     }
 
-.petal::before {
+.petal::after {
     content: "";
     width: 100%;
     height: 100%;
