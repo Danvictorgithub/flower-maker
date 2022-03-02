@@ -10,6 +10,9 @@ const aod = document.querySelector('.aod');
 const petalInfo = document.querySelectorAll('.petal');
 const floret = document.querySelector('.circle');
 
+const xPetal = document.querySelector('.petalX');
+const yPetal = document.querySelector('.petalY');
+const zPetal = document.querySelector('.petalZ');
 let petalbefore = window.getComputedStyle(floret,'::before');
 //Default values
 let fColor = "white";
@@ -57,3 +60,26 @@ sliderLen.addEventListener('input', (e) => {
         petal.style.setProperty('--trans',`skew(${e.target.value}deg,${e.target.value}deg)`);
     });
 });
+
+xPetal.addEventListener('input',(e) => {
+    defX = e.target.value;
+    petalInfo.forEach((petal) => {
+        petal.style.setProperty('--rad', `${defX}% ${defY}% 0 ${defZ}%`);
+    });
+    
+});
+
+yPetal.addEventListener('input',(e) => {
+    defY = e.target.value;
+    petalInfo.forEach((petal) => {
+        petal.style.setProperty('--rad', `${defX}% ${defY}% 0 ${defZ}%`);
+    });
+});
+
+zPetal.addEventListener('input',(e) => {
+    defZ = e.target.value;
+    petalInfo.forEach((petal) => {
+        petal.style.setProperty('--rad', `${defX}% ${defY}% 0 ${defZ}%`);
+    });
+});
+

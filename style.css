@@ -64,7 +64,7 @@ html {
     height: 100%;
     position: absolute;
     background: var(--before,yellow);
-    border-radius: 750% 75% 0 75%;
+    border-radius: var(--rad, 750% 75% 0 75%);
     transform: var(--trans,skew(29deg, 29deg));
     box-shadow: 0.3rem 0.3rem 0.3rem white;
     transform-origin: bottom right;
