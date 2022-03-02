@@ -8,6 +8,7 @@ const statRadius = document.querySelector('.radiusStat');
 const statusLen = document.querySelector('.lenStatus');
 const aod = document.querySelector('.aod');
 const petalInfo = document.querySelectorAll('.petal');
+const petals = document.querySelector('.petals');
 const floret = document.querySelector('.circle');
 
 const xPetal = document.querySelector('.petalX');
@@ -40,11 +41,25 @@ colorFloret.addEventListener('input',(e) => {
     floret.style['background-color'] = `${e.target.value}`;
 })
 petalsNum.addEventListener('input',(e) => {
+    while (petals.firstElementChild != floret) {
+        petals.removeChild(petals.firstElementChild);
+    }
     let degree = 360/e.target.value;
     if (degree == Infinity) {
         degree = "Enter the number of Petals";
-    };
+        while (petals.firstElementChild != floret) {
+            petals.removeChild(petals.firstElementChild);
+        }
+    } else {
+        for (let i=0; i!= e.target.value;i++) {
+            const countpetal = document.createElement('div');
+            countpetal.classList.add('petal');
+            countpetal.style['transform'] = `rotateZ(${degree*i}deg)`;
+            petals.insertBefore(countpetal,floret);
+        }
+    }
     aod.textContent = `${degree}°`;
+    
 });
 
 radiusLen.addEventListener('input', (e) => {
